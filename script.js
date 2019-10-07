@@ -23,8 +23,6 @@ function getRandUser(){
                     +"</p>";
             
             
-            
-            
             document.getElementById("userResults").innerHTML = input;
       });
       
@@ -32,13 +30,38 @@ function getRandUser(){
     
 }
 
-getRandUser()
 
 
 document.getElementById("getNewUser").addEventListener("click", function(event){
     console.log('triggered')
     getRandUser();
 });
+
+
+
+function getRandTxt(){
+  var url = "https://api.adviceslip.com/advice";
+  fetch(url).then(function(response) {
+	 return response.json();
+  })
+  .then(function(json) {
+  	//console.log(json);
+  	  console.log(json.slip.advice);
+      var inner= '<p>' + json.slip.advice + '<p>';
+      document.getElementById("motto").innerHTML += inner;
+  })
+  .catch(err => {
+  	console.log(err);
+  	return err;
+  });
+}
+
+
+getRandUser()
+getRandTxt()
+getRandTxt()
+getRandTxt()
+
 
 /*
 async function getRandUser(){
