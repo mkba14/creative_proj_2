@@ -35,32 +35,62 @@ function getRandUser(){
 document.getElementById("getNewUser").addEventListener("click", function(event){
     console.log('triggered')
     getRandUser();
+    getRandTxt(3);
+
 });
 
 
-
+getRandUser();
+getRandTxt();
+/*
 function getRandTxt(){
-  var url = "https://api.adviceslip.com/advice";
+  var url = "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand";
   fetch(url).then(function(response) {
-	 return response.json();
-  })
+  	 return response.json();
+    })
   .then(function(json) {
-  	//console.log(json);
-  	  console.log(json.slip.advice);
-      var inner= '<p>' + json.slip.advice + '<p>';
-      document.getElementById("motto").innerHTML += inner;
+    console.log(json);
+    var inner = '<p>';
+    for(let i = 0; i < json.length; i++){
+      inner += json[i].content.rendered;
+     }
+     inner += '</p>';
+      document.getElementById("motto").innerHTML = inner;
+
   })
   .catch(err => {
   	console.log(err);
   	return err;
   });
 }
+*/
+
+function getRandTxt(NUM){
+  var url = "https://api.adviceslip.com/advice";
+  for(let i = 0; i < NUM;i++){
+    fetch(url).then(function(response) {
+  	 return response.json();
+    })
+    .then(function(json) {
+    	//console.log(json);
+    	  console.log(json.slip.advice);
+        var inner= '<p>' + json.slip.advice + '<p>';
+        if(i != 0){
+          document.getElementById("motto").innerHTML += inner;
+        }     
+        else{
+          document.getElementById("motto").innerHTML = inner;
+        }
+    })
+    .catch(err => {
+    	console.log(err);
+    	return err;
+    });
+  }
+}
 
 
-getRandUser()
-getRandTxt()
-getRandTxt()
-getRandTxt()
+
 
 
 /*
