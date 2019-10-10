@@ -5,11 +5,29 @@ function getRandUser(){
             return response.json();
       }).then(function(json) {	
           console.log(json);
-          console.log('here');
+          //console.log('here');
           var input = '';
          //input +="<p>"+'<img src='+json.results[0].picture.medium+' alt="profile pic">'+"</p>";
          
-         input  +=  '<table>'
+         input  +=  '<div> '
+                + '<ul class="centered-list">';
+                if(Math.random() >= 0.5){
+                  input += '<li>'
+                        +  json.results[0].email
+                        + '</li>';
+                }
+                if(Math.random() >= 0.5){
+                  input += '<li>'
+                        + json.results[0].login.username 
+                        + ' is from ' + json.results[0].location.country
+                        + '</li><li class="small"><br></li>';
+                }
+                input += '<li class="small"><i>'
+                        + 'Profile created ' + moment(json.results[0].registered.date).format('MMMM YYYY')
+                        + '</i></li>'
+                      + '</ul>'
+                      + '</div>'
+         /*'<table>'
                 + '<tbody>'
                 + '<tr>'
                 + '<th>Email</th>'
@@ -21,6 +39,7 @@ function getRandUser(){
                 + '</tr>'
                 + '</tbody>'
                 + '</table>'
+                
                 
          /*"<table>"
                     + "username: " + json.results[0].login.username
@@ -85,7 +104,7 @@ function getRandTxt(NUM){
     })
     .then(function(json) {
     	//console.log(json);
-    	  console.log(json.slip.advice);
+    	  //console.log(json.slip.advice);
     	  var inner = '';
     	  inner +=  '<div class="item">'
     	        +  '<img class="left_box" src="'

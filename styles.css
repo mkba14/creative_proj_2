@@ -49,3 +49,15 @@ nav li a {
 nav li a:hover {
     background-color: red;
 }
+
+
+/*class="centered-list"*/
+
+ul.centered-list {
+  list-style-type: none;
+  text-align: center;
+}
+
+.small {
+   font-size: 10pt;
+}
