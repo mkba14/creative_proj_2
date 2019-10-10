@@ -73,30 +73,53 @@ document.getElementById("getNewUser").addEventListener("click", function(event){
 
 });
 
-/*
-function getRandTxt(){
-  var url = "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand";
-  fetch(url).then(function(response) {
+
+
+/* getRandTxt returns random activities for a given
+  input number */
+function getRandTxt(NUM){
+  var url = "http://www.boredapi.com/api/activity/";
+  for(let i = 0; i < NUM;i++){
+    fetch(url).then(function(response) {
+      //console.log(response);
+      //  	 console.log(response.json());
+
   	 return response.json();
     })
-  .then(function(json) {
-    console.log(json);
-    var inner = '<p>';
-    for(let i = 0; i < json.length; i++){
-      inner += json[i].content.rendered;
-     }
-     inner += '</p>';
-      document.getElementById("motto").innerHTML = inner;
+    .then(function(json) {
+    	//console.log(json);
+    	  //console.log(json.slip.advice);
+    	  console.log(json);
+    	  var inner = '';
+    	  inner +=  '<div class="item">'
+    	        +  '<img class="left_box" src="'
+    	        +  'images/Kangaroo.jpg'
+    	        +  '" alt="profile pic"> '
+              +  '<p class = "right_box">'
+    	        +  json.activity
+    	        +  '</p>'
+    	        +  '</div>'
 
-  })
-  .catch(err => {
-  	console.log(err);
-  	return err;
-  });
+        if(i != 0){
+          document.getElementById("posts").innerHTML += inner;
+        }     
+        else{
+          document.getElementById("posts").innerHTML = inner;
+        }
+    })
+    .catch(err => {
+    	console.log(err);
+    	return err;
+    });
+  }
 }
-*/
 
-function getRandTxt(NUM){
+
+
+/* Yeah..so getRandText_orig gives random advice,
+    however the API appears to be naughty, so 
+    I'm using something else*/
+function getRandTxt_orig(NUM){
   var url = "https://api.adviceslip.com/advice";
   for(let i = 0; i < NUM;i++){
     fetch(url).then(function(response) {
@@ -128,7 +151,6 @@ function getRandTxt(NUM){
     });
   }
 }
-
 
 
 function profile_start(){
