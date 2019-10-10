@@ -1,5 +1,3 @@
-
-      
 function getRandUser(){
     apikey = "NEAQ-BX5L-I9NK-WLUZ";
     const url = "https://randomuser.me/api/";
@@ -11,8 +9,22 @@ function getRandUser(){
           var input = '';
          //input +="<p>"+'<img src='+json.results[0].picture.medium+' alt="profile pic">'+"</p>";
          
-         input  += "<table>"
-          /*        
+         input  +=  '<table>'
+                + '<tbody>'
+                + '<tr>'
+                + '<th>Email</th>'
+                + '<td>' + json.results[0].email + '</td>'
+                + '</tr>'
+                + '<tr>'
+                + '<th>User since</td>'
+                + '<td>'+moment(json.results[0].registered.date).format('MMMM, YYYY')+'</td>'
+                + '</tr>'
+                + '</tbody>'
+                + '</table>'
+                
+         /*"<table>"
+                    + "username: " + json.results[0].login.username
+                    + '<br>'
                     + "Name: " + json.results[0].name.title 
                             + ' ' + json.results[0].name.first
                             + ' ' + json.results[0].name.last
@@ -21,8 +33,8 @@ function getRandUser(){
                     + "<br>"
                     + "cell: " + json.results[0].cell
                     + "<br>phone: " + json.results[0].phone
-          */
-                    +"</table>";
+          
+                    +"</table>";*/
             
             
             document.getElementById("userResults").innerHTML = input;
@@ -42,9 +54,6 @@ document.getElementById("getNewUser").addEventListener("click", function(event){
 
 });
 
-
-getRandUser();
-getRandTxt(10);
 /*
 function getRandTxt(){
   var url = "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand";
@@ -103,32 +112,10 @@ function getRandTxt(NUM){
 
 
 
-
-
-/*
-async function getRandUser(){
-    console.log('calling');
-    var result = await useRandData();
-    console.log(result);
+function profile_start(){
+    getRandUser();
+    var num_max = 20; 
+    getRandTxt(Math.floor((Math.random() * num_max) + 1));
 }
 
-getRandUser();
-
-
-/*click --> when the mouse is clicked*/
-/* For current weather data?*/
-/*
-document.getElementById("user_info").addEventListener("click", function(event){
-    event.preventDefault();
-      const value = document.getElementById("newUserName").value;
-      if (newUserName === "")
-        return;
-      console.log(value);
-      const url = "https://randomuser.me/api/";
-      fetch(url)
-        .then(function(response) {
-            return response.json();
-      }).then(function(json) {	
-          
-      });
-      */
+profile_start();
