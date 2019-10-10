@@ -9,9 +9,10 @@ function getRandUser(){
           console.log(json);
           console.log('here');
           var input = '';
-         input +="<p>"+'<img src='+json.results[0].picture.medium+' alt="profile pic">'+"</p>";
+         //input +="<p>"+'<img src='+json.results[0].picture.medium+' alt="profile pic">'+"</p>";
          
-          input += "<p>"
+         input  += "<table>"
+          /*        
                     + "Name: " + json.results[0].name.title 
                             + ' ' + json.results[0].name.first
                             + ' ' + json.results[0].name.last
@@ -20,7 +21,8 @@ function getRandUser(){
                     + "<br>"
                     + "cell: " + json.results[0].cell
                     + "<br>phone: " + json.results[0].phone
-                    +"</p>";
+          */
+                    +"</table>";
             
             
             document.getElementById("userResults").innerHTML = input;
@@ -35,13 +37,14 @@ function getRandUser(){
 document.getElementById("getNewUser").addEventListener("click", function(event){
     console.log('triggered')
     getRandUser();
-    getRandTxt(3);
+    var num_max = 20; 
+    getRandTxt(Math.floor((Math.random() * num_max) + 1));
 
 });
 
 
 getRandUser();
-getRandTxt();
+getRandTxt(10);
 /*
 function getRandTxt(){
   var url = "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand";
@@ -74,12 +77,21 @@ function getRandTxt(NUM){
     .then(function(json) {
     	//console.log(json);
     	  console.log(json.slip.advice);
-        var inner= '<p>' + json.slip.advice + '<p>';
+    	  var inner = '';
+    	  inner +=  '<div class="item">'
+    	        +  '<img class="left_box" src="'
+    	        +  'images/Kangaroo.jpg'
+    	        +  '" alt="profile pic"> '
+              +  '<p class = "right_box">'
+    	        +  json.slip.advice
+    	        +  '</p>'
+    	        +  '</div>'
+
         if(i != 0){
-          document.getElementById("motto").innerHTML += inner;
+          document.getElementById("posts").innerHTML += inner;
         }     
         else{
-          document.getElementById("motto").innerHTML = inner;
+          document.getElementById("posts").innerHTML = inner;
         }
     })
     .catch(err => {
