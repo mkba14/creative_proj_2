@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Overpass:200,700&display=swap" rel="stylesheet">
+    <style>
+    body{
+        font-family: 'Overpass', sans-serif;
+    }
+        #topBar {
+            background-color: silver;
+            height: 100px;
+            margin-top: 200px;
+        }
+
+        #tabs {
+            /*border: 1px solid blue;*/
+            float: left;
+            width: 20%;
+            min-width:600px;
+            height: 100%;
+            margin-left: 3%;
+        }
+
+        #icon {
+            float: left;
+            margin-left: 6%;
+            width: 250px;
+            position: relative;
+            bottom: 100px;
+            border: 10px solid #404040;
+            border-radius: 50px;
+        }
+
+        .tab {
+            /*border: 1px solid green;*/
+            float: left;
+            font-size: 1.5em;
+            line-height: 0.9;
+            width: 20%;
+            height: 100%;
+        }
+
+        .tab p {
+            margin: 20px 0 20px 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .tab:hover {
+            background-color: lightgrey;
+        }
+
+        /*BUTTON*/
+
+        .button {
+            float: right;
+            color: #FFF;
+            text-decoration:none;
+            background-color: dimgrey;
+            /* Blue */
+            font-weight: bold;
+            padding: 5px;
+            text-align: center;
+            border: 2px solid #5D6063;
+            /* Dark gray */
+            border-radius: 5px;
+            width: 200px;
+            font-size:1.8em
+        }
+
+        .button:hover {
+            color: #FFF;
+            background-color: darkgrey;
+            /* Light blue */
+        }
+
+        .button:active,
+        .button:visited:active {
+            color: #FFF;
+            background-color: lightgrey;
+            /* Blue */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Adorable Avatars Test</h1>
+    <form id="userform">
+        <input id="user">
+        <input type="submit" value="Go">
+    </form>
+    <a class='button' href='index.html'>Next</a>
+    <div id="topBar">
+        <img id="icon" src="https://api.adorable.io/avatars/285/test" alt="icon" />
+        <div id="tabs">
+            <div id="t-guroos" class="tab">
+                <p><strong>Guroos</strong></p>
+                <p>867</p>
+            </div>
+            <div id="t-followers" class="tab">
+                <p><strong>Followers</strong></p>
+                <p>867</p>
+            </div>
+            <div id="t-following" class="tab">
+                <p><strong>Following</strong></p>
+                <p>867</p>
+            </div>
+            <div id="t-likes" class="tab">
+                <p><strong>Likes</strong></p>
+                <p>867</p>
+            </div>
+            <div id="t-dislikes" class="tab">
+                <p><strong>Dislikes</strong></p>
+                <p>867</p>
+            </div>
+        </div>
+        <span id="follow"></span>
+    </div>
+
+
+    <script>
+        document.getElementById("userform").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let id = document.getElementById("user").value;
+            console.log("id is", id);
+            let size = 185 + Math.floor((Math.random() * 100) + 1);
+            let fullURL = 'https://api.adorable.io/avatars/' + size + "/" + id;
+            document.getElementById("icon").src = fullURL;
+        });
+    </script>
+</body>
+
+
+</html>
