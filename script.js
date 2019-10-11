@@ -37,7 +37,7 @@ function getRandUser(){
             document.getElementById("icon").src="https://api.adorable.io/avatars/2000/"
                       + json.results[0].login.username +".png";
             
-            numPosts = Math.floor((Math.random() * num_max) + 1);
+            var numPosts = Math.floor((Math.random() * num_max) + 1);
             updateBar(numPosts);
 
             getRandTxt_orig(numPosts,
@@ -108,7 +108,7 @@ function getRandTxt(NUM, text){
 
 
 
-function getRandTxt_1(text){
+async function getRandTxt_1(text){
   var url = "https://api.adviceslip.com/advice";
     fetch(url).then(function(response) {
   	 return response.json();
@@ -119,6 +119,7 @@ function getRandTxt_1(text){
     	  
     	  if(shouldFilter(String(json.slip.advice)) == 1){
     	    getRandTxt_1(text);
+    	    return;
     	  }
     	  var avatar_url = "https://api.adorable.io/avatars/90/"
                       + text +".png";
@@ -199,7 +200,7 @@ function profile_start(){
     getRandUser();
 }
 function updateBar(postsNum){
-  randomNum("guroos", postsNum);
+  document.getElementById("guroos").innerHTML= postsNum;
   randomNum("followers", 10000);
   randomNum("following", 10000);
   randomNum("likes", 1000);
@@ -215,7 +216,6 @@ function updateBar(postsNum){
 
 function randomNum(text, num){
   document.getElementById(text).innerHTML= Math.floor(Math.random()*num);
-
 }
 profile_start();
 updateBar();
