@@ -1,4 +1,5 @@
 function getRandUser(){
+  
     apikey = "NEAQ-BX5L-I9NK-WLUZ";
     const url = "https://randomuser.me/api/";
     fetch(url).then(function(response) {
@@ -32,7 +33,14 @@ function getRandUser(){
             console.log("username, ", json.results[0].login.username)
             
             var num_max = 20;
-            getRandTxt_orig(Math.floor((Math.random() * num_max) + 1),
+            
+            document.getElementById("icon").src="https://api.adorable.io/avatars/2000/"
+                      + json.results[0].login.username +".png";
+            
+            numPosts = Math.floor((Math.random() * num_max) + 1);
+            updateBar(numPosts);
+
+            getRandTxt_orig(numPosts,
                       json.results[0].login.username)
 
             document.getElementById("user_name").innerHTML=json.results[0].login.username;
@@ -123,11 +131,12 @@ function getRandTxt_1(text){
         inner += '<p class = "right_box">'
               + '<div class=" medium">'
     	        +  json.slip.advice
+    	        + '<br>'
+    	        + '<i>~ '+text+'</i>'
     	        +  '</div>'
     	        +  '</p>'
     	        + '</div>'
-            document.getElementById("icon").src="https://api.adorable.io/avatars/2000/"
-                      + text +".png";
+            
 
         if(i != 0){
           document.getElementById("posts").innerHTML += inner;
@@ -189,8 +198,8 @@ document.getElementById("getNewUser").addEventListener("click", function(event){
 function profile_start(){
     getRandUser();
 }
-function updateBar(){
-  randomNum("guroos", 1000);
+function updateBar(postsNum){
+  randomNum("guroos", postsNum);
   randomNum("followers", 10000);
   randomNum("following", 10000);
   randomNum("likes", 1000);
