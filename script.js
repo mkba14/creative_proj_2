@@ -109,7 +109,7 @@ function getRandTxt_1(text){
     	//console.log(json);
     	  //console.log(json.slip.advice);
     	  
-    	  if(shouldFilter(String(json.slip.advice)) === 1){
+    	  if(shouldFilter(String(json.slip.advice)) == 1){
     	    getRandTxt_1(text);
     	  }
     	  var avatar_url = "https://api.adorable.io/avatars/90/"
@@ -153,7 +153,7 @@ function getRandTxt_orig(NUM, text){
 
 function shouldFilter(text){
 
-  if(text.indexOf('sex') !== -1){
+  if(text.toLowerCase().indexOf('sex') !== -1){
     return 1;
   }
   else if(text.toLowerCase().indexOf('bastard') !== -1){
@@ -168,7 +168,7 @@ function shouldFilter(text){
   else if(text.toLowerCase().indexOf('fuck') !== -1){
     return 1;
   }
-  else if(text.toLocaleLowerCase().indexOf('dick') !== -1){
+  else if(text.toLowerCase().indexOf('dick') !== -1){
     return 1;
   }
   
