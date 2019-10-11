@@ -32,7 +32,7 @@ function getRandUser(){
             console.log("username, ", json.results[0].login.username)
             
             var num_max = 20;
-            getRandTxt(Math.floor((Math.random() * num_max) + 1),
+            getRandTxt_orig(Math.floor((Math.random() * num_max) + 1),
                       json.results[0].login.username)
             return '"' + json.results[0].login.username + '"';
             
@@ -96,10 +96,8 @@ function getRandTxt(NUM, text){
 
 
 
-/* Yeah..so getRandText_orig gives random advice,
-    however the API appears to be naughty, so 
-    I'm using something else*/
-function getRandTxt_orig(NUM){
+
+function getRandTxt_orig(NUM, text){
   var url = "https://api.adviceslip.com/advice";
   for(let i = 0; i < NUM;i++){
     fetch(url).then(function(response) {
@@ -108,15 +106,24 @@ function getRandTxt_orig(NUM){
     .then(function(json) {
     	//console.log(json);
     	  //console.log(json.slip.advice);
+    	  
+    	  if(shouldFilter(String(json.slip.advice)) === 1){
+    	    getRandTxt_orig(NUM, text);
+    	  }
+    	  var avatar_url = "https://api.adorable.io/avatars/90/"
+                      + text +".png";
+                      
     	  var inner = '';
-    	  inner +=  '<div class="item">'
+    	 inner +=  '<div class="item">'
     	        +  '<img class="left_box" src="'
-    	        +  'images/Kangaroo.jpg'
+    	        +  avatar_url
     	        +  '" alt="profile pic"> '
-              +  '<p class = "right_box">'
+        inner += '<p class = "right_box">'
+              + '<div class=" medium">'
     	        +  json.slip.advice
-    	        +  '</p>'
     	        +  '</div>'
+    	        +  '</p>'
+    	        + '</div>'
 
         if(i != 0){
           document.getElementById("posts").innerHTML += inner;
@@ -132,7 +139,32 @@ function getRandTxt_orig(NUM){
   }
 }
 
+function shouldFilter(text){
 
+  if(text.indexOf('sex') !== -1){
+    return 1;
+  }
+  else if(text.toLowerCase().indexOf('bastard') !== -1){
+    return 1;
+  }
+  else if(text.toLowerCase().indexOf('hell') !== -1){
+    return 1;
+  }
+  else if(text.toLowerCase().indexOf('shit') !== -1){
+    return 1;
+  }
+  else if(text.toLowerCase().indexOf('fuck') !== -1){
+    return 1;
+  }
+  else if(text.toLocaleLowerCase().indexOf('dick') !== -1){
+    return 1;
+  }
+  
+  else {
+    return 0;
+  }
+  
+}
 
 document.getElementById("getNewUser").addEventListener("click", function(event){
     console.log('triggered')
