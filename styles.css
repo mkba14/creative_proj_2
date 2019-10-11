@@ -70,3 +70,23 @@ ul.centered-list {
     margin-right: 10%;
 
 }
+
+footer {
+  margin-top: 3%;
+
+  bottom: 0px;
+  height: auto;
+  width: 100vw;
+  background-color: #fffaf0 !important;
+  color: lightgrey !important;
+  text-align: center;
+  
+}
+
+footer a {
+    color: black !important;
+}
+
+body {
+    background-color: brown;
+}
