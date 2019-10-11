@@ -34,8 +34,8 @@ function getRandUser(){
             var num_max = 20;
             getRandTxt_orig(Math.floor((Math.random() * num_max) + 1),
                       json.results[0].login.username)
-            return '"' + json.results[0].login.username + '"';
-            
+
+            document.getElementById("user_name").innerHTML=json.results[0].login.username;
             
       });
       
