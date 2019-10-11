@@ -97,9 +97,10 @@ function getRandTxt(NUM, text){
 
 
 
-function getRandTxt_orig(NUM, text){
+
+
+function getRandTxt_1(text){
   var url = "https://api.adviceslip.com/advice";
-  for(let i = 0; i < NUM;i++){
     fetch(url).then(function(response) {
   	 return response.json();
     })
@@ -108,7 +109,7 @@ function getRandTxt_orig(NUM, text){
     	  //console.log(json.slip.advice);
     	  
     	  if(shouldFilter(String(json.slip.advice)) === 1){
-    	    getRandTxt_orig(NUM, text);
+    	    getRandTxt_1(text);
     	  }
     	  var avatar_url = "https://api.adorable.io/avatars/90/"
                       + text +".png";
@@ -136,6 +137,14 @@ function getRandTxt_orig(NUM, text){
     	console.log(err);
     	return err;
     });
+}
+
+
+
+function getRandTxt_orig(NUM, text){
+  document.getElementById("posts").innerHTML = "";
+  for(let i = 0; i < NUM;i++){
+    getRandTxt_1(text);
   }
 }
 
