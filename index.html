@@ -6,9 +6,8 @@
     <link href="https://fonts.googleapis.com/css?family=Overpass:200,700&display=swap" rel="stylesheet">
     <style>
         .content {
-            border: 1px solid red;
             width: 80%;
-            margin: 0 auto;
+            margin: 50px auto;
             font-family: 'Overpass', sans-serif;
             color: #404040;
         }
@@ -35,6 +34,38 @@
             text-align: center;
             margin: 0 auto;
         }
+                /*BUTTON*/
+
+        .button {
+            color: #FFF;
+            text-decoration:none;
+            background-color: dimgrey;
+            /* Blue */
+            font-weight: bold;
+            padding: 5px;
+            text-align: center;
+            border: 2px solid #5D6063;
+            /* Dark gray */
+            border-radius: 5px;
+            width: 200px;
+            font-size:1.8em;
+            
+            display: block;
+            margin: 20px auto;
+        }
+
+        .button:hover {
+            color: #FFF;
+            background-color: darkgrey;
+            /* Light blue */
+        }
+
+        .button:active,
+        .button:visited:active {
+            color: #FFF;
+            background-color: lightgrey;
+            /* Blue */
+        }
     </style>
 </head>
 
@@ -43,6 +74,7 @@
         <img src="guroo.png" alt="alt" />
         <h1>GuRoo</h1>
         <h2>Share Your Wisdom with the World</h2>
+        <a class='button' href='profile.html'>START</a>
     </div>
 
     <script>
