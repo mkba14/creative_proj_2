@@ -1,5 +1,3 @@
-
-      
 function getRandUser(){
     apikey = "NEAQ-BX5L-I9NK-WLUZ";
     const url = "https://randomuser.me/api/";
@@ -7,23 +5,38 @@ function getRandUser(){
             return response.json();
       }).then(function(json) {	
           console.log(json);
-          console.log('here');
+          //console.log('here');
           var input = '';
-         input +="<p>"+'<img src='+json.results[0].picture.medium+' alt="profile pic">'+"</p>";
+         //input +="<p>"+'<img src='+json.results[0].picture.medium+' alt="profile pic">'+"</p>";
          
-          input += "<p>"
-                    + "Name: " + json.results[0].name.title 
-                            + ' ' + json.results[0].name.first
-                            + ' ' + json.results[0].name.last
-                    +"<br>"
-                    + "age: " + json.results[0].dob.age
-                    + "<br>"
-                    + "cell: " + json.results[0].cell
-                    + "<br>phone: " + json.results[0].phone
-                    +"</p>";
-            
-            
+         input  +=  '<div> '
+                + '<ul class="centered-list">';
+                if(Math.random() >= 0.5){
+                  input += '<li>'
+                        +  json.results[0].email
+                        + '</li>';
+                }
+                if(Math.random() >= 0.5){
+                  input += '<li>'
+                        + json.results[0].login.username 
+                        + ' is from ' + json.results[0].location.country
+                        + '</li><li class="small"><br></li>';
+                }
+                input += '<li class="small"><i>'
+                        + 'Profile created ' + moment(json.results[0].registered.date).format('MMMM YYYY')
+                        + '</i></li>'
+                      + '</ul>'
+                      + '</div>'
+
             document.getElementById("userResults").innerHTML = input;
+            console.log("username, ", json.results[0].login.username)
+            
+            var num_max = 20;
+            getRandTxt(Math.floor((Math.random() * num_max) + 1),
+                      json.results[0].login.username)
+            return '"' + json.results[0].login.username + '"';
+            
+            
       });
       
       
@@ -32,54 +45,46 @@ function getRandUser(){
 
 
 
-document.getElementById("getNewUser").addEventListener("click", function(event){
-    console.log('triggered')
-    getRandUser();
-    getRandTxt(3);
-
-});
 
 
-getRandUser();
-getRandTxt();
-/*
-function getRandTxt(){
-  var url = "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand";
-  fetch(url).then(function(response) {
-  	 return response.json();
-    })
-  .then(function(json) {
-    console.log(json);
-    var inner = '<p>';
-    for(let i = 0; i < json.length; i++){
-      inner += json[i].content.rendered;
-     }
-     inner += '</p>';
-      document.getElementById("motto").innerHTML = inner;
 
-  })
-  .catch(err => {
-  	console.log(err);
-  	return err;
-  });
-}
-*/
-
-function getRandTxt(NUM){
-  var url = "https://api.adviceslip.com/advice";
+/* getRandTxt returns random activities for a given
+  input number */
+function getRandTxt(NUM, text){
+  var url = "http://www.boredapi.com/api/activity/";
   for(let i = 0; i < NUM;i++){
     fetch(url).then(function(response) {
+      //console.log(response);
+      //  	 console.log(response.json());
+
   	 return response.json();
     })
     .then(function(json) {
     	//console.log(json);
-    	  console.log(json.slip.advice);
-        var inner= '<p>' + json.slip.advice + '<p>';
+    	  //console.log(json.slip.advice);
+    	  console.log(json);
+    	  var inner = '';
+    	  
+       var avatar_url = "https://api.adorable.io/avatars/90/"
+                      + text +".png";
+        console.log(avatar_url);
+    	  inner +=  '<div class="item">'
+    	        +  '<img class="left_box" src="'
+    	        +  avatar_url
+    	        +  '" alt="profile pic"> '
+        inner += '<p class = "right_box">'
+              + '<div class=" medium">'
+    	        +  json.activity
+    	        +  '</div>'
+    	        +  '</p>'
+    	        + '</div>'
+    	        
+
         if(i != 0){
-          document.getElementById("motto").innerHTML += inner;
+          document.getElementById("posts").innerHTML += inner;
         }     
         else{
-          document.getElementById("motto").innerHTML = inner;
+          document.getElementById("posts").innerHTML = inner;
         }
     })
     .catch(err => {
@@ -91,32 +96,55 @@ function getRandTxt(NUM){
 
 
 
+/* Yeah..so getRandText_orig gives random advice,
+    however the API appears to be naughty, so 
+    I'm using something else*/
+function getRandTxt_orig(NUM){
+  var url = "https://api.adviceslip.com/advice";
+  for(let i = 0; i < NUM;i++){
+    fetch(url).then(function(response) {
+  	 return response.json();
+    })
+    .then(function(json) {
+    	//console.log(json);
+    	  //console.log(json.slip.advice);
+    	  var inner = '';
+    	  inner +=  '<div class="item">'
+    	        +  '<img class="left_box" src="'
+    	        +  'images/Kangaroo.jpg'
+    	        +  '" alt="profile pic"> '
+              +  '<p class = "right_box">'
+    	        +  json.slip.advice
+    	        +  '</p>'
+    	        +  '</div>'
 
-
-/*
-async function getRandUser(){
-    console.log('calling');
-    var result = await useRandData();
-    console.log(result);
+        if(i != 0){
+          document.getElementById("posts").innerHTML += inner;
+        }     
+        else{
+          document.getElementById("posts").innerHTML = inner;
+        }
+    })
+    .catch(err => {
+    	console.log(err);
+    	return err;
+    });
+  }
 }
 
-getRandUser();
 
 
-/*click --> when the mouse is clicked*/
-/* For current weather data?*/
-/*
-document.getElementById("user_info").addEventListener("click", function(event){
-    event.preventDefault();
-      const value = document.getElementById("newUserName").value;
-      if (newUserName === "")
-        return;
-      console.log(value);
-      const url = "https://randomuser.me/api/";
-      fetch(url)
-        .then(function(response) {
-            return response.json();
-      }).then(function(json) {	
-          
-      });
-      */
+document.getElementById("getNewUser").addEventListener("click", function(event){
+    console.log('triggered')
+    profile_start();
+
+});
+
+
+
+function profile_start(){
+    getRandUser();
+}
+
+profile_start();
+
