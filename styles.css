@@ -59,5 +59,14 @@ ul.centered-list {
 }
 
 .small {
-   font-size: 10pt;
+   font-size: small;
+}
+
+.medium {
+    background-color: #fffaf0;
+    font-size: large;
+    margin-left: 20%;
+    padding-left: 5%;
+    margin-right: 10%;
+
 }

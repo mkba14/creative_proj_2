@@ -27,36 +27,16 @@ function getRandUser(){
                         + '</i></li>'
                       + '</ul>'
                       + '</div>'
-         /*'<table>'
-                + '<tbody>'
-                + '<tr>'
-                + '<th>Email</th>'
-                + '<td>' + json.results[0].email + '</td>'
-                + '</tr>'
-                + '<tr>'
-                + '<th>User since</td>'
-                + '<td>'+moment(json.results[0].registered.date).format('MMMM, YYYY')+'</td>'
-                + '</tr>'
-                + '</tbody>'
-                + '</table>'
-                
-                
-         /*"<table>"
-                    + "username: " + json.results[0].login.username
-                    + '<br>'
-                    + "Name: " + json.results[0].name.title 
-                            + ' ' + json.results[0].name.first
-                            + ' ' + json.results[0].name.last
-                    +"<br>"
-                    + "age: " + json.results[0].dob.age
-                    + "<br>"
-                    + "cell: " + json.results[0].cell
-                    + "<br>phone: " + json.results[0].phone
-          
-                    +"</table>";*/
-            
-            
+
             document.getElementById("userResults").innerHTML = input;
+            console.log("username, ", json.results[0].login.username)
+            
+            var num_max = 20;
+            getRandTxt(Math.floor((Math.random() * num_max) + 1),
+                      json.results[0].login.username)
+            return '"' + json.results[0].login.username + '"';
+            
+            
       });
       
       
@@ -65,19 +45,12 @@ function getRandUser(){
 
 
 
-document.getElementById("getNewUser").addEventListener("click", function(event){
-    console.log('triggered')
-    getRandUser();
-    var num_max = 20; 
-    getRandTxt(Math.floor((Math.random() * num_max) + 1));
-
-});
 
 
 
 /* getRandTxt returns random activities for a given
   input number */
-function getRandTxt(NUM){
+function getRandTxt(NUM, text){
   var url = "http://www.boredapi.com/api/activity/";
   for(let i = 0; i < NUM;i++){
     fetch(url).then(function(response) {
@@ -91,14 +64,21 @@ function getRandTxt(NUM){
     	  //console.log(json.slip.advice);
     	  console.log(json);
     	  var inner = '';
+    	  
+       var avatar_url = "https://api.adorable.io/avatars/90/"
+                      + text +".png";
+        console.log(avatar_url);
     	  inner +=  '<div class="item">'
     	        +  '<img class="left_box" src="'
-    	        +  'images/Kangaroo.jpg'
+    	        +  avatar_url
     	        +  '" alt="profile pic"> '
-              +  '<p class = "right_box">'
+        inner += '<p class = "right_box">'
+              + '<div class=" medium">'
     	        +  json.activity
-    	        +  '</p>'
     	        +  '</div>'
+    	        +  '</p>'
+    	        + '</div>'
+    	        
 
         if(i != 0){
           document.getElementById("posts").innerHTML += inner;
@@ -153,10 +133,18 @@ function getRandTxt_orig(NUM){
 }
 
 
+
+document.getElementById("getNewUser").addEventListener("click", function(event){
+    console.log('triggered')
+    profile_start();
+
+});
+
+
+
 function profile_start(){
     getRandUser();
-    var num_max = 20; 
-    getRandTxt(Math.floor((Math.random() * num_max) + 1));
 }
 
 profile_start();
+
