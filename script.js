@@ -1,4 +1,5 @@
 function getRandUser(){
+  
     apikey = "NEAQ-BX5L-I9NK-WLUZ";
     const url = "https://randomuser.me/api/";
     fetch(url).then(function(response) {
@@ -32,10 +33,17 @@ function getRandUser(){
             console.log("username, ", json.results[0].login.username)
             
             var num_max = 20;
-            getRandTxt_orig(Math.floor((Math.random() * num_max) + 1),
-                      json.results[0].login.username)
-            return '"' + json.results[0].login.username + '"';
             
+            document.getElementById("icon").src="https://api.adorable.io/avatars/2000/"
+                      + json.results[0].login.username +".png";
+            
+            var numPosts = Math.floor((Math.random() * num_max) + 1);
+            updateBar(numPosts);
+
+            getRandTxt_orig(numPosts,
+                      json.results[0].login.username)
+
+            document.getElementById("user_name").innerHTML=json.results[0].login.username;
             
       });
       
@@ -100,7 +108,7 @@ function getRandTxt(NUM, text){
 
 
 
-function getRandTxt_1(text){
+async function getRandTxt_1(text){
   var url = "https://api.adviceslip.com/advice";
     fetch(url).then(function(response) {
   	 return response.json();
@@ -111,6 +119,7 @@ function getRandTxt_1(text){
     	  
     	  if(shouldFilter(String(json.slip.advice)) == 1){
     	    getRandTxt_1(text);
+    	    return;
     	  }
     	  var avatar_url = "https://api.adorable.io/avatars/90/"
                       + text +".png";
@@ -123,11 +132,12 @@ function getRandTxt_1(text){
         inner += '<p class = "right_box">'
               + '<div class=" medium">'
     	        +  json.slip.advice
+    	        + '<br>'
+    	        + '<i>~ '+text+'</i>'
     	        +  '</div>'
     	        +  '</p>'
     	        + '</div>'
-            document.getElementById("icon").src="https://api.adorable.io/avatars/2000/"
-                      + text +".png";
+            
 
         if(i != 0){
           document.getElementById("posts").innerHTML += inner;
@@ -189,8 +199,8 @@ document.getElementById("getNewUser").addEventListener("click", function(event){
 function profile_start(){
     getRandUser();
 }
-function updateBar(){
-  randomNum("guroos", 1000);
+function updateBar(postsNum){
+  document.getElementById("guroos").innerHTML= postsNum;
   randomNum("followers", 10000);
   randomNum("following", 10000);
   randomNum("likes", 1000);
@@ -206,7 +216,6 @@ function updateBar(){
 
 function randomNum(text, num){
   document.getElementById(text).innerHTML= Math.floor(Math.random()*num);
-
 }
 profile_start();
 updateBar();

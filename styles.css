@@ -9,6 +9,12 @@ div.spacing {
   clear:both;
 
 }
+
+div.spacing_2 {
+  margin-right: 5%;
+  margin-left: 5%;
+  clear:both;
+}
 div.item {
     margin: auto;
     border: 3px solid #b0480c;
