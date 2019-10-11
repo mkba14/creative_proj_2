@@ -1,6 +1,8 @@
+/*global fetch*/
+
 function getRandUser(){
   
-    apikey = "NEAQ-BX5L-I9NK-WLUZ";
+    let apikey = "NEAQ-BX5L-I9NK-WLUZ";
     const url = "https://randomuser.me/api/";
     fetch(url).then(function(response) {
             return response.json();
@@ -27,10 +29,10 @@ function getRandUser(){
                         + 'Profile created ' + moment(json.results[0].registered.date).format('MMMM YYYY')
                         + '</i></li>'
                       + '</ul>'
-                      + '</div>'
+                      + '</div>';
 
             document.getElementById("userResults").innerHTML = input;
-            console.log("username, ", json.results[0].login.username)
+            console.log("username, ", json.results[0].login.username);
             
             var num_max = 20;
             
@@ -41,9 +43,10 @@ function getRandUser(){
             updateBar(numPosts);
 
             getRandTxt_orig(numPosts,
-                      json.results[0].login.username)
+                      json.results[0].login.username);
 
-            document.getElementById("user_name").innerHTML=json.results[0].login.username;
+            //document.getElementById("user_name").innerHTML="Click me for Contact Information!";
+            document.getElementById("username").innerHTML = json.results[0].login.username;
             
       });
       
@@ -73,19 +76,19 @@ function getRandTxt(NUM, text){
     	  console.log(json);
     	  var inner = '';
     	  
-       var avatar_url = "https://api.adorable.io/avatars/90/"
+       var avatar_url = "https://api.adorable.io/avatars/285/"
                       + text +".png";
         console.log(avatar_url);
     	  inner +=  '<div class="item">'
     	        +  '<img class="left_box" src="'
     	        +  avatar_url
-    	        +  '" alt="profile pic"> '
+    	        +  '" alt="profile pic"> ';
         inner += '<p class = "right_box">'
               + '<div class=" medium">'
     	        +  json.activity
     	        +  '</div>'
     	        +  '</p>'
-    	        + '</div>'
+    	        + '</div>';
     	        
 
         if(i != 0){
@@ -117,18 +120,18 @@ async function getRandTxt_1(text){
     	//console.log(json);
     	  //console.log(json.slip.advice);
     	  
-    	  if(shouldFilter(String(json.slip.advice)) == 1){
+    	  let isEvil = shouldFilter(String(json.slip.advice));
+    	  if(isEvil){
     	    getRandTxt_1(text);
     	    return;
     	  }
-    	  var avatar_url = "https://api.adorable.io/avatars/90/"
-                      + text +".png";
+    	  var avatar_url = "https://api.adorable.io/avatars/200/" + text +".png";
                       
     	  var inner = '';
     	 inner +=  '<div class="item">'
     	        +  '<img class="left_box" src="'
     	        +  avatar_url
-    	        +  '" alt="profile pic"> '
+    	        +  '" alt="profile pic"> ';
         inner += '<p class = "right_box">'
               + '<div class=" medium">'
     	        +  json.slip.advice
@@ -136,10 +139,10 @@ async function getRandTxt_1(text){
     	        + '<i>~ '+text+'</i>'
     	        +  '</div>'
     	        +  '</p>'
-    	        + '</div>'
+    	        + '</div>';
             
 
-        if(i != 0){
+        if(i != 0){ //TODO: i is not defined
           document.getElementById("posts").innerHTML += inner;
         }     
         else{
@@ -164,26 +167,26 @@ function getRandTxt_orig(NUM, text){
 function shouldFilter(text){
 
   if(text.toLowerCase().indexOf('sex') !== -1){
-    return 1;
+    return true;
   }
   else if(text.toLowerCase().indexOf('bastard') !== -1){
-    return 1;
+    return true;
   }
   else if(text.toLowerCase().indexOf('hell') !== -1){
-    return 1;
+    return true;
   }
   else if(text.toLowerCase().indexOf('shit') !== -1){
-    return 1;
+    return true;
   }
   else if(text.toLowerCase().indexOf('fuck') !== -1){
-    return 1;
+    return true;
   }
   else if(text.toLowerCase().indexOf('dick') !== -1){
-    return 1;
+    return true;
   }
   
   else {
-    return 0;
+    return false;
   }
   
 }
