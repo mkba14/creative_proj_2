@@ -86,6 +86,7 @@ function getRandTxt(NUM, text){
         else{
           document.getElementById("posts").innerHTML = inner;
         }
+        document.getElementById("icon").src=avatar_url;
     })
     .catch(err => {
     	console.log(err);
@@ -125,6 +126,8 @@ function getRandTxt_1(text){
     	        +  '</div>'
     	        +  '</p>'
     	        + '</div>'
+            document.getElementById("icon").src="https://api.adorable.io/avatars/2000/"
+                      + text +".png";
 
         if(i != 0){
           document.getElementById("posts").innerHTML += inner;
@@ -186,6 +189,24 @@ document.getElementById("getNewUser").addEventListener("click", function(event){
 function profile_start(){
     getRandUser();
 }
+function updateBar(){
+  randomNum("guroos", 1000);
+  randomNum("followers", 10000);
+  randomNum("following", 10000);
+  randomNum("likes", 1000);
+  randomNum("dislikes", 1000);
+  /*
+  document.getElementById("guroos").innerHTML= Math.floor(Math.random()*10000); //make it the number of posts
+  document.getElementById("followers").innerHTML= Math.floor(Math.random()*10000);
+  document.getElementById("following").innerHTML= Math.floor(Math.random()*10000);
+  document.getElementById("likes").innerHTML = Math.floor(Math.random()*1000);
+  document.getElementById("dislikes").innerHTML= Math.floor(Math.random()*1000);
+  */
+}
 
+function randomNum(text, num){
+  document.getElementById(text).innerHTML= Math.floor(Math.random()*num);
+
+}
 profile_start();
-
+updateBar();

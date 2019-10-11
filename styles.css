@@ -1,9 +1,8 @@
 div.spacing {
   margin-right: 5%;
   margin-left: 5%;
-  margin-top: 10%;
   border: 3px solid #b0480c;
-  border-top: 0px;
+  clear:both;
 
 }
 div.item {

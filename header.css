@@ -1,0 +1,78 @@
+body{
+    font-family: 'Overpass', sans-serif;
+}
+#topBar {
+    background-color: silver;
+    height: 100px;
+    margin-top: 200px;
+}
+
+#tabs {
+    /*border: 1px solid blue;*/
+    float: left;
+    width: 20%;
+    min-width:600px;
+    height: 100%;
+    margin-left: 3%;
+    overflow: hidden;
+    
+}
+
+#icon {
+    float: left;
+    margin-left: 6%;
+    width: 250px;
+    position: relative;
+    bottom: 100px;
+    border: 10px solid #404040;
+    border-radius: 50px;
+}
+
+.tab {
+    /*border: 1px solid green;*/
+    float: left;
+    font-size: 1.5em;
+    line-height: 0.9;
+    width: 20%;
+    height: 100%;
+}
+
+.tab p {
+    margin: 20px 0 20px 0;
+    padding: 0;
+    text-align: center;
+}
+
+.tab:hover {
+    background-color: lightgrey;
+}
+
+/*BUTTON*/
+
+.button {
+    float: right;
+    color: #FFF;
+    text-decoration:none;
+    background-color: dimgrey;
+    /* Blue */
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
+    border: 2px solid #5D6063;
+    /* Dark gray */
+    border-radius: 5px;
+    width: 200px;
+    font-size:1.8em
+}
+
+.button:hover {
+    color: #FFF;
+    background-color: darkgrey;
+    /* Light blue */
+}
+
+.button:active,
+.button:visited:active {
+    color: #FFF;
+    background-color: lightgrey;
+   

@@ -1,53 +1,80 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="collapse.css">
-        <title>GuRoo</title>
 
-    </head>
-    <body>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="collapse.css">
+    <link rel="stylesheet" href="header.css">
+    <title>GuRoo</title>
 
+</head>
 
-        <nav>
-            <ul>
-              <li><a href="profile.html">Home</a></li>
-              <li></li>
-            </ul>
-        </nav>
-        
-        <div id="getNewUser">
-            <button>
-                See another user.
+<body>
+    <button type="button" class="collapsible">Contact</button>
+    <div class="content">
+        <div id="userResults">
+        </div>
+    </div>
+
+    <!--<a class='button' href='index.html'>Next</a>-->
+
+    <div id="topBar">
+        <img id="icon" src="https://api.adorable.io/avatars/285/test" alt="icon" />
+        <div id="tabs">
+            <div class="tab">
+                <p><strong>Guroos</strong></p>
+                <p id="guroos">180</p>
+            </div>
+            <div class="tab">
+                <p><strong>Followers</strong></p>
+                <p id="followers">867</p>
+            </div>
+            <div class="tab">
+                <p><strong>Following</strong></p>
+                <p id="following">867</p>
+            </div>
+            <div class="tab">
+                <p><strong>Likes</strong></p>
+                <p id="likes"></p>867</p>
+            </div>
+            <div class="tab">
+                <p><strong>Dislikes</strong></p>
+                <p id="dislikes">867</p>
+            </div>
+        </div>
+        <span id="follow"></span>
+    </div>
+    
+    <div id="getNewUser">
+        <button class='button'>
+                Next
             </button>
+    </div>
+
+
+
+    <br>
+
+    <div class="spacing">
+        <div id="posts">
         </div>
-        
-        <button type="button" class="collapsible">Contact</button>
-        <div class="content">
-            <div id="userResults">
-            </div>
-        </div>
-        
-        
-        <div class="spacing">
-            <div id="posts">
-            </div>
-        </div>
-        
+    </div>
+
     <footer>
         <a href="https://github.com/mkba14/creative_proj_2">Github</a>
     </footer>
-         
 
-<!-- For compatability on mobile devices-->      
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-  <!-- to use moment in js; for time-->
+    <!-- For compatability on mobile devices-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- to use moment in js; for time-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
 
-<!-- user-made javascript-->
-<script text="type/javascript" src="script.js"></script>
-         <script text="type/javascript" src="collapse.js"></script>
-    </body>
+    <!-- user-made javascript-->
+    <script text="type/javascript" src="script.js"></script>
+    <script text="type/javascript" src="collapse.js"></script>
+</body>
+
 </html>
