@@ -1,26 +1,29 @@
-body{
-    font-family: 'Overpass', sans-serif;
+#username{
+    position:relative;
+    margin-left: 380px;
+    font-size: 3em;
+    display:block;
 }
 #topBar {
     background-color: silver;
     height: 100px;
-    margin-top: 200px;
+    margin-top: 150px;
 }
 
 #tabs {
     /*border: 1px solid blue;*/
-    float: left;
+    relative: fixed;
     width: 20%;
     min-width:600px;
-    height: 100%;
-    margin-left: 3%;
+    height: 100px;
+    margin-left: 380px;
     overflow: hidden;
     
 }
 
 #icon {
     float: left;
-    margin-left: 6%;
+    margin-left: 80px;
     width: 250px;
     position: relative;
     bottom: 100px;
@@ -50,6 +53,7 @@ body{
 /*BUTTON*/
 
 .button {
+    display:block;
     float: right;
     color: #FFF;
     text-decoration:none;
@@ -62,7 +66,8 @@ body{
     /* Dark gray */
     border-radius: 5px;
     width: 200px;
-    font-size:1.8em
+    font-size:1.8em;
+    margin-top: 100px;
 }
 
 .button:hover {
